@@ -1,0 +1,72 @@
+/* MARK: - Remove toolbar */
+
+a.hLHLjl {
+    display: none;
+}
+
+div.ba0rn4 {
+    display: none;
+}
+
+div.ySafaT {
+    display: none;
+}
+
+
+/* MARK: - Remove header */
+
+header.nav-flex {
+    display: none;
+    
+}
+
+/* MARK: - Remove footer */
+div.navLeftFooter.nav-sprite-v1 {
+    display: none;
+    
+}
+
+/* MARK: - Add footer to prevent bouncy behaivor at bottom of page */
+
+
+
+/* MARK: - Make background clear */
+div._2RwnU5, dynamic-type-ramp dv-fable-breakpoints VYbJYb yL46mS kK-hEr {
+    background-color: transparent;
+    
+/*    color: #000*/
+}
+
+.DWvyeE, html body {
+    background-color: transparent;
+}
+
+.lGJghq, .lGJghq {
+    background: none;
+    background-size: 0px 0px;
+}
+
+.tixsA- {
+    background-color: transparent;
+}
+
+/* MARK: - Remove hidden skip link */
+
+a.skip-link {
+    display: none;
+}
+
+/* MARK: - Adjust episode, related, details button*/
+
+
+/* MARK: - Adjust episode row bg and padding*/
+._2MB5uV._2MB5uV {
+    background-color: rgba(0,0,0, 0.5);
+    padding: 24px;
+}
+
+/*._2MB5uV._2MB5uV.GMyJNy {*/
+/*    display: none;*/
+/*/*    background-color: rgba(0,0,0);*/*/
+/*/*    padding: 12px;*/*/
+/*}*/

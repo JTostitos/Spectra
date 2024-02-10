@@ -13,5 +13,6 @@ struct SpectraApp: App {
         WindowGroup {
             ContentView()
         }
+        .windowResizability(.contentSize)
     }
 }
