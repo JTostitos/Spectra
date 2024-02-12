@@ -1,6 +1,7 @@
 {
   "images" : [
     {
+      "filename" : "tv_transperant.png",
       "idiom" : "vision",
       "scale" : "2x"
     }

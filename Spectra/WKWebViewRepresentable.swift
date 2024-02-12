@@ -40,9 +40,25 @@ struct WKWebViewRepresentable: UIViewRepresentable {
         }
         
         let css = try! String(contentsOfFile: path).components(separatedBy: .newlines).joined()
-        let source = "var style = document.createElement('style'); style.innerHTML = '\(css)'; document.head.appendChild(style);"
+        let source = """
+        var style = document.createElement('style'); style.innerHTML = '\(css)'; document.head.appendChild(style);
+        Object.defineProperty(navigator, 'maxTouchPoints', { get:function() { return 1; } });
+        """
+        
         let userScript = WKUserScript(source: source,
                                       injectionTime: .atDocumentEnd,
+                                      forMainFrameOnly: false)
+        
+        return userScript
+    }
+    
+    func fixVideoPlayer() -> WKUserScript {
+        let source = """
+        Object.defineProperty(navigator, 'maxTouchPoints', { get:function() { return 1; } });
+        """
+        
+        let userScript = WKUserScript(source: source,
+                                      injectionTime: .atDocumentStart,
                                       forMainFrameOnly: false)
         
         return userScript
@@ -51,6 +67,7 @@ struct WKWebViewRepresentable: UIViewRepresentable {
     func wkWebViewConfiguration() -> WKWebViewConfiguration {
         let userContentController = WKUserContentController()
         userContentController.addUserScript(wkUserScript())
+        userContentController.addUserScript(fixVideoPlayer())
         
         let configuration = WKWebViewConfiguration()
         configuration.userContentController = userContentController
