@@ -59,18 +59,25 @@ struct ContentView: View {
     @AppStorage("login") private var login: Bool = true
     @State private var primeVideoPlaces: PrimeVideoPlaces = .home
     @State private var wkWebViewControlsVM = WKWebViewControlsVM.shared
+    @State private var isLoading = false
     
     var body: some View {
         ZStack {
+            if isLoading {
+                ProgressView()
+                    .progressViewStyle(.circular)
+            }
+            
             if let url =  URL(string: "https://www.amazon.com/gp/video/storefront") {
-                WKWebViewRepresentable(url: url, wkWebViewControlsVM: wkWebViewControlsVM)
+                WKWebViewRepresentable(url: url, wkWebViewControlsVM: wkWebViewControlsVM, isLoading: $isLoading)
                     .frame(width: 1400, height: 1000)
+                    .opacity(isLoading ? 0 : 1)
                     .ornament(attachmentAnchor: .scene(.leading)) {
                         VStack(spacing: 32) {
                             ForEach(PrimeVideoPlaces.allCases, id: \.hashValue) { prime in
                                 Button {
                                     wkWebViewControlsVM.loadWebView(url: prime.primeURL)
-                                    print(wkWebViewControlsVM.webpageTitle())
+                                    
                                 } label: {
                                     Image(systemName: prime.tabItemImages)
                                         .font(.title)
@@ -111,13 +118,12 @@ struct ContentView: View {
                             .buttonStyle(.bordered)
                         }
                     }
-                    
             }
         }
         .sheet(isPresented: $login) {
             NavigationStack {
                 if let url =  URL(string: primeVideoPlaces.loginURL) {
-                    WKWebViewRepresentable(url: url, wkWebViewControlsVM: wkWebViewControlsVM)
+                    WKWebViewRepresentable(url: url, wkWebViewControlsVM: wkWebViewControlsVM, isLoading: $isLoading)
                         .toolbar {
                             ToolbarItem(placement: .topBarTrailing) {
                                 Button {

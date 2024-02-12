@@ -12,13 +12,19 @@ import WebKit
 struct WKWebViewRepresentable: UIViewRepresentable {
     let url: URL
     let wkWebViewControlsVM: WKWebViewControlsVM
+    @Binding var isLoading: Bool
+    
+    func makeCoordinator() -> Coordinator {
+        Coordinator(self)
+    }
     
     func makeUIView(context: Context) -> WKWebView {
         let wkWebView = WKWebView(frame: .zero, configuration: wkWebViewConfiguration())
         
         let customUserAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 14_3_1) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.2 Safari/605.1.15"
-        
         wkWebView.setValue(customUserAgent, forKey: "customUserAgent")
+        
+        wkWebView.navigationDelegate = context.coordinator
         
         wkWebView.scrollView.backgroundColor = .clear
         wkWebView.isOpaque = false
@@ -26,12 +32,26 @@ struct WKWebViewRepresentable: UIViewRepresentable {
         
         wkWebViewControlsVM.wkWebView = wkWebView
         
+        
         wkWebView.load(URLRequest(url: url))
         return wkWebView
     }
     
     func updateUIView(_ uiView: WKWebView, context: Context) {
         
+    }
+    
+    class Coordinator: NSObject, WKNavigationDelegate {
+        var parent: WKWebViewRepresentable
+        init(_ parent: WKWebViewRepresentable) {
+            self.parent = parent
+        }
+        func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
+            parent.isLoading = true
+        }
+        func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+            parent.isLoading = false
+        }
     }
     
     func wkUserScript() -> WKUserScript {
@@ -74,5 +94,5 @@ struct WKWebViewRepresentable: UIViewRepresentable {
         
         return configuration
     }
-    
+ 
 }
