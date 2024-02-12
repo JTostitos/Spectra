@@ -20,6 +20,12 @@ header.nav-flex {
     
 }
 
+/* move carosel down*/
+
+.PkqXx3 {
+    padding-top: 5%;
+}
+
 /* MARK: - Remove footer */
 div.navLeftFooter.nav-sprite-v1 {
     display: none;
@@ -57,6 +63,17 @@ a.skip-link {
 }
 
 /* MARK: - Adjust episode, related, details button*/
+div._3KHiTg.+cUdBP {
+    display: none;
+}
+
+button.ofo4B0.MH6gd4 {
+    display: none;
+}
+
+button.ofo4B0 {
+    display: none;
+}
 
 
 /* MARK: - Adjust episode row bg and padding*/
@@ -65,8 +82,28 @@ a.skip-link {
     padding: 24px;
 }
 
-/*._2MB5uV._2MB5uV.GMyJNy {*/
+/* MARK: - Remove gradient on login under legal buttons*/
+
+/*div.a-row.a-expander-container.a-expander-inline-container {*/
 /*    display: none;*/
-/*/*    background-color: rgba(0,0,0);*/*/
-/*/*    padding: 12px;*/*/
+/*}*/
+/**/
+/*hr.a-divider-normal {*/
+/*    display: none;*/
+/*}*/
+/**/
+/*div.a-section.a-spacing-micro {*/
+/*    display: none;*/
+/*}*/
+/**/
+/*div a span {*/
+/*    display: none;*/
+/*}*/
+/**/
+/*div.a-divider.a-divider-break {*/
+/*    display: none;*/
+/*}*/
+/**/
+/*div.a-divider-inner {*/
+/*    background: none;*/
 /*}*/
