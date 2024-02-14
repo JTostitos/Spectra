@@ -39,8 +39,6 @@ div.navLeftFooter.nav-sprite-v1 {
 /* MARK: - Make background clear */
 div._2RwnU5, dynamic-type-ramp dv-fable-breakpoints VYbJYb yL46mS kK-hEr {
     background-color: transparent;
-    
-/*    color: #000*/
 }
 
 .DWvyeE, html body {
@@ -75,6 +73,15 @@ button.ofo4B0 {
     display: none;
 }
 
+/* MARK: - Adjust Live TV bubbles */
+.k0uWjy button.BCOvN9 {
+    color: white;
+}
+
+.INH50t {
+    color: white;
+}
+
 
 /* MARK: - Adjust episode row bg and padding*/
 ._2MB5uV._2MB5uV {
@@ -82,6 +89,44 @@ button.ofo4B0 {
     padding: 24px;
 }
 
+/* MARK: - Adjust login page*/
+div.a-row.a-expander-container.a-expander-inline-container {
+    display: none;
+}
+
+hr.a-divider-normal {
+    display: none;
+}
+
+div.a-section.a-spacing-micro {
+    display: none;
+}
+
+div a span {
+    display: none;
+}
+
+div.a-divider.a-divider-break {
+    display: none;
+}
+
+div.a-divider-inner {
+    background: none;
+    display: none;
+    background-color: none;
+}
+
+span.a-size-mini.a-color-secondary {
+    color: white!important;
+}
+
+a-section a-spacing-none a-text-center {
+    color: white!important;
+}
+
+a.a-link-normal {
+    display: none;
+}
 
 /* MARK: - Remove gradient on login under legal buttons*/
 

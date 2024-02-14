@@ -56,9 +56,11 @@ enum PrimeVideoPlaces: CaseIterable {
 }
 
 struct ContentView: View {
-    @AppStorage("login") private var login: Bool = true
+    @Environment(\.dismissWindow) private var dismissWindow
+    @Environment(\.openWindow) var openWindow
+    @Environment(WKWebViewControlsVM.self) var wkWebViewControlsVM
+    @AppStorage("requiresLogin") private var requiresLogin: Bool = true
     @State private var primeVideoPlaces: PrimeVideoPlaces = .home
-    @State private var wkWebViewControlsVM = WKWebViewControlsVM.shared
     @State private var isLoading = false
     
     var body: some View {
@@ -68,78 +70,73 @@ struct ContentView: View {
                     .progressViewStyle(.circular)
             }
             
-            if let url =  URL(string: "https://www.amazon.com/gp/video/storefront") {
-                WKWebViewRepresentable(url: url, wkWebViewControlsVM: wkWebViewControlsVM, isLoading: $isLoading)
-                    .frame(width: 1400, height: 1000)
-                    .opacity(isLoading ? 0 : 1)
-                    .ornament(attachmentAnchor: .scene(.leading)) {
-                        VStack(spacing: 32) {
-                            ForEach(PrimeVideoPlaces.allCases, id: \.hashValue) { prime in
-                                Button {
-                                    wkWebViewControlsVM.loadWebView(url: prime.primeURL)
-                                    
-                                } label: {
-                                    Image(systemName: prime.tabItemImages)
-                                        .font(.title)
-                                        .frame(width: 60, height: 60)
-                                }
-                                .buttonStyle(.borderless)
-                                .buttonBorderShape(.circle)
-                            }
-                        }
-                        .padding()
-                        .glassBackgroundEffect()
-                    }
-                    .toolbar {
-                        ToolbarItemGroup(placement: .bottomOrnament) {
-                            Group {
-                                Button {
-                                    wkWebViewControlsVM.goBack()
-                                } label: {
-                                    Image(systemName: "chevron.left")
-                                }
-                                
-                                Text(wkWebViewControlsVM.webpageTitle())
-                                    .frame(minWidth: 100)
-                                
-                                Button {
-                                    wkWebViewControlsVM.goForward()
-                                } label: {
-                                    Image(systemName: "chevron.right")
-                                }
-                                
-                                Button {
-                                    wkWebViewControlsVM.reload()
-                                } label: {
-                                    Image(systemName: "arrow.counterclockwise")
-                                }
-                            }
-                            .buttonBorderShape(.circle)
-                            .buttonStyle(.bordered)
-                        }
-                    }
-            }
-        }
-        .sheet(isPresented: $login) {
-            NavigationStack {
-                if let url =  URL(string: primeVideoPlaces.loginURL) {
+            if !requiresLogin {
+                if let url =  URL(string: "https://www.amazon.com/gp/video/storefront") {
                     WKWebViewRepresentable(url: url, wkWebViewControlsVM: wkWebViewControlsVM, isLoading: $isLoading)
+                        .opacity(isLoading ? 0 : 1)
+                        .ornament(attachmentAnchor: .scene(.leading)) {
+                            VStack(spacing: 32) {
+                                ForEach(PrimeVideoPlaces.allCases, id: \.hashValue) { prime in
+                                    Button {
+                                        wkWebViewControlsVM.loadWebView(url: prime.primeURL)
+                                    } label: {
+                                        Image(systemName: prime.tabItemImages)
+                                            .font(.title)
+                                            .frame(width: 60, height: 60)
+                                    }
+                                    .buttonStyle(.borderless)
+                                    .buttonBorderShape(.circle)
+                                }
+                            }
+                            .padding()
+                            .glassBackgroundEffect()
+                        }
                         .toolbar {
-                            ToolbarItem(placement: .topBarTrailing) {
-                                Button {
-                                    login = false
-                                    wkWebViewControlsVM.loadWebView(url: primeVideoPlaces.primeURL)
-                                } label: {
-                                    Text("Done")
+                            ToolbarItemGroup(placement: .bottomOrnament) {
+                                Group {
+                                    Button {
+                                        wkWebViewControlsVM.goBack()
+                                    } label: {
+                                        Image(systemName: "chevron.left")
+                                    }
+                                    
+                                    Text(wkWebViewControlsVM.webpageTitle())
+                                        .frame(minWidth: 100)
+                                    
+                                    Button {
+                                        wkWebViewControlsVM.goForward()
+                                    } label: {
+                                        Image(systemName: "chevron.right")
+                                    }
+                                    
+                                    Button {
+                                        wkWebViewControlsVM.reload()
+                                    } label: {
+                                        Image(systemName: "arrow.counterclockwise")
+                                    }
+                                }
+                                .buttonBorderShape(.circle)
+                                .buttonStyle(.bordered)
+                            }
+                        }
+                        .onChange(of: wkWebViewControlsVM.wkWebView?.url) { oldValue, newValue in
+                            if let url = newValue {
+                                if url.absoluteString.contains("https://www.amazon.com/gp/video/detail") {
+                                    openWindow(id: "videoPlayerView", value: url.absoluteString)
+                                    wkWebViewControlsVM.goBack()
                                 }
                             }
                         }
                 }
             }
-            .onAppear {
-                login = true
-                wkWebViewControlsVM.loadWebView(url: primeVideoPlaces.loginURL)
-            }
+        }
+        .onAppear {
+            dismissWindow(id: "videoPlayerView")
+        }
+        .sheet(isPresented: $requiresLogin) {
+            LoginView(isLoading: $isLoading, primeVideoPlaces: $primeVideoPlaces)
+                .environment(wkWebViewControlsVM)
+                .frame(width: 575, height: 575)
         }
     }
 }

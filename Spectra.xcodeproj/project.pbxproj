@@ -7,8 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A341FCB62B7C285900CCCA3C /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A341FCB52B7C285900CCCA3C /* LoginView.swift */; };
 		A34F02D02B77082A006A58FA /* WKWebViewControlsVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A34F02CF2B77082A006A58FA /* WKWebViewControlsVM.swift */; };
 		A3679C1E2B76A17F004916A9 /* style.css in Resources */ = {isa = PBXBuildFile; fileRef = A3679C1D2B76A17F004916A9 /* style.css */; };
+		A3B8DDDC2B7A988700A78F0E /* VideoPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B8DDDB2B7A988700A78F0E /* VideoPlayerView.swift */; };
 		A3D114382B6F4A9800412FEA /* RealityKitContent in Frameworks */ = {isa = PBXBuildFile; productRef = A3D114372B6F4A9800412FEA /* RealityKitContent */; };
 		A3D1143A2B6F4A9800412FEA /* SpectraApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D114392B6F4A9800412FEA /* SpectraApp.swift */; };
 		A3D1143C2B6F4A9800412FEA /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D1143B2B6F4A9800412FEA /* ContentView.swift */; };
@@ -18,8 +20,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A341FCB52B7C285900CCCA3C /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		A34F02CF2B77082A006A58FA /* WKWebViewControlsVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WKWebViewControlsVM.swift; sourceTree = "<group>"; };
 		A3679C1D2B76A17F004916A9 /* style.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = style.css; sourceTree = "<group>"; };
+		A3B8DDDB2B7A988700A78F0E /* VideoPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerView.swift; sourceTree = "<group>"; };
 		A3D114322B6F4A9800412FEA /* Spectra.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Spectra.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A3D114362B6F4A9800412FEA /* RealityKitContent */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = RealityKitContent; sourceTree = "<group>"; };
 		A3D114392B6F4A9800412FEA /* SpectraApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpectraApp.swift; sourceTree = "<group>"; };
@@ -63,7 +67,9 @@
 			isa = PBXGroup;
 			children = (
 				A3D114392B6F4A9800412FEA /* SpectraApp.swift */,
+				A3B8DDDB2B7A988700A78F0E /* VideoPlayerView.swift */,
 				A3D1143B2B6F4A9800412FEA /* ContentView.swift */,
+				A341FCB52B7C285900CCCA3C /* LoginView.swift */,
 				A34F02CF2B77082A006A58FA /* WKWebViewControlsVM.swift */,
 				A3D114482B6F4D0200412FEA /* WKWebViewRepresentable.swift */,
 				A3679C1D2B76A17F004916A9 /* style.css */,
@@ -164,10 +170,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A341FCB62B7C285900CCCA3C /* LoginView.swift in Sources */,
 				A3D114492B6F4D0200412FEA /* WKWebViewRepresentable.swift in Sources */,
 				A3D1143C2B6F4A9800412FEA /* ContentView.swift in Sources */,
 				A34F02D02B77082A006A58FA /* WKWebViewControlsVM.swift in Sources */,
 				A3D1143A2B6F4A9800412FEA /* SpectraApp.swift in Sources */,
+				A3B8DDDC2B7A988700A78F0E /* VideoPlayerView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
