@@ -84,10 +84,35 @@ struct WKWebViewRepresentable: UIViewRepresentable {
         return userScript
     }
     
+    func episodesElementStyling() -> WKUserScript {
+        #warning("Works great until you click on the episode row. The styling is also overwriting the expanded view which does not look right. Perhaps remove expanded view? And remove some other buttons.")
+        let source = """
+        var targetElement = document.getElementById('tab-content-episodes');
+        if (targetElement) {
+        var liElements = targetElement.getElementsByTagName('li');
+            for (var i = 0; i < liElements.length; i++) {
+                var divElement = liElements[i].querySelector('div');
+                    if (divElement) {
+                        divElement.style['background-color'] = 'rgba(0,0,0, 0.5)';
+                        divElement.style.padding = '24px';
+                    }
+            }
+        } else {
+        console.log("Target element not found.");
+        }
+        """
+        
+        let userScript = WKUserScript(source: source, injectionTime: .atDocumentEnd, forMainFrameOnly: false)
+        
+        return userScript
+    }
+    
     func wkWebViewConfiguration() -> WKWebViewConfiguration {
         let userContentController = WKUserContentController()
+        
         userContentController.addUserScript(wkUserScript())
         userContentController.addUserScript(fixVideoPlayer())
+        userContentController.addUserScript(episodesElementStyling())
         
         let configuration = WKWebViewConfiguration()
         configuration.userContentController = userContentController

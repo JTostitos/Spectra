@@ -38,4 +38,13 @@ class WKWebViewControlsVM {
     func webpageTitle() -> String {
         return wkWebView?.title ?? "Hulu"
     }
+    
+    func playPause() {
+        wkWebView?.evaluateJavaScript("""
+        var e = new KeyboardEvent('keydown',{'keyCode':32,'which':32});
+        document.dispatchEvent(e);
+        """) { (result, error) in
+            print("HELLO THERE: \(String(describing: result))")
+        }
+    }
 }

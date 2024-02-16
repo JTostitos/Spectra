@@ -94,20 +94,20 @@ struct ContentView: View {
                         .toolbar {
                             ToolbarItemGroup(placement: .bottomOrnament) {
                                 Group {
-                                    Button {
-                                        wkWebViewControlsVM.goBack()
-                                    } label: {
-                                        Image(systemName: "chevron.left")
-                                    }
+//                                    Button {
+//                                        wkWebViewControlsVM.goBack()
+//                                    } label: {
+//                                        Image(systemName: "chevron.left")
+//                                    }
                                     
                                     Text(wkWebViewControlsVM.webpageTitle())
                                         .frame(minWidth: 100)
                                     
-                                    Button {
-                                        wkWebViewControlsVM.goForward()
-                                    } label: {
-                                        Image(systemName: "chevron.right")
-                                    }
+//                                    Button {
+//                                        wkWebViewControlsVM.goForward()
+//                                    } label: {
+//                                        Image(systemName: "chevron.right")
+//                                    }
                                     
                                     Button {
                                         wkWebViewControlsVM.reload()

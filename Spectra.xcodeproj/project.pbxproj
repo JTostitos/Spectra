@@ -17,6 +17,8 @@
 		A3D1143E2B6F4A9A00412FEA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A3D1143D2B6F4A9A00412FEA /* Assets.xcassets */; };
 		A3D114412B6F4A9A00412FEA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A3D114402B6F4A9A00412FEA /* Preview Assets.xcassets */; };
 		A3D114492B6F4D0200412FEA /* WKWebViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D114482B6F4D0200412FEA /* WKWebViewRepresentable.swift */; };
+		A3DF9EDB2B7EA5C700E42AB3 /* JunoSlider in Frameworks */ = {isa = PBXBuildFile; productRef = A3DF9EDA2B7EA5C700E42AB3 /* JunoSlider */; };
+		A3F3C6CF2B7F0F6C00D7A8A4 /* episodesListStyle.js in Sources */ = {isa = PBXBuildFile; fileRef = A3F3C6CE2B7F0F6C00D7A8A4 /* episodesListStyle.js */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +34,8 @@
 		A3D114402B6F4A9A00412FEA /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		A3D114422B6F4A9A00412FEA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A3D114482B6F4D0200412FEA /* WKWebViewRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WKWebViewRepresentable.swift; sourceTree = "<group>"; };
+		A3DF9ED82B7EA52900E42AB3 /* JunoSlider-main */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = "JunoSlider-main"; path = "../../../../Downloads/JunoSlider-main"; sourceTree = "<group>"; };
+		A3F3C6CE2B7F0F6C00D7A8A4 /* episodesListStyle.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = episodesListStyle.js; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,18 +44,29 @@
 			buildActionMask = 2147483647;
 			files = (
 				A3D114382B6F4A9800412FEA /* RealityKitContent in Frameworks */,
+				A3DF9EDB2B7EA5C700E42AB3 /* JunoSlider in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A3A5AFB52B7D31E700BF2934 /* WebCode */ = {
+			isa = PBXGroup;
+			children = (
+				A3679C1D2B76A17F004916A9 /* style.css */,
+				A3F3C6CE2B7F0F6C00D7A8A4 /* episodesListStyle.js */,
+			);
+			path = WebCode;
+			sourceTree = "<group>";
+		};
 		A3D114292B6F4A9800412FEA = {
 			isa = PBXGroup;
 			children = (
 				A3D114342B6F4A9800412FEA /* Spectra */,
 				A3D114352B6F4A9800412FEA /* Packages */,
 				A3D114332B6F4A9800412FEA /* Products */,
+				A3DF9ED92B7EA5C700E42AB3 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -67,14 +82,15 @@
 			isa = PBXGroup;
 			children = (
 				A3D114392B6F4A9800412FEA /* SpectraApp.swift */,
-				A3B8DDDB2B7A988700A78F0E /* VideoPlayerView.swift */,
-				A3D1143B2B6F4A9800412FEA /* ContentView.swift */,
-				A341FCB52B7C285900CCCA3C /* LoginView.swift */,
-				A34F02CF2B77082A006A58FA /* WKWebViewControlsVM.swift */,
 				A3D114482B6F4D0200412FEA /* WKWebViewRepresentable.swift */,
-				A3679C1D2B76A17F004916A9 /* style.css */,
+				A341FCB52B7C285900CCCA3C /* LoginView.swift */,
+				A3D1143B2B6F4A9800412FEA /* ContentView.swift */,
+				A3B8DDDB2B7A988700A78F0E /* VideoPlayerView.swift */,
+				A34F02CF2B77082A006A58FA /* WKWebViewControlsVM.swift */,
+				A3A5AFB52B7D31E700BF2934 /* WebCode */,
 				A3D1143D2B6F4A9A00412FEA /* Assets.xcassets */,
 				A3D114422B6F4A9A00412FEA /* Info.plist */,
+				A3DF9ED82B7EA52900E42AB3 /* JunoSlider-main */,
 				A3D1143F2B6F4A9A00412FEA /* Preview Content */,
 			);
 			path = Spectra;
@@ -96,6 +112,13 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		A3DF9ED92B7EA5C700E42AB3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -114,6 +137,7 @@
 			name = Spectra;
 			packageProductDependencies = (
 				A3D114372B6F4A9800412FEA /* RealityKitContent */,
+				A3DF9EDA2B7EA5C700E42AB3 /* JunoSlider */,
 			);
 			productName = Spectra;
 			productReference = A3D114322B6F4A9800412FEA /* Spectra.app */;
@@ -143,6 +167,8 @@
 				Base,
 			);
 			mainGroup = A3D114292B6F4A9800412FEA;
+			packageReferences = (
+			);
 			productRefGroup = A3D114332B6F4A9800412FEA /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -175,6 +201,7 @@
 				A3D1143C2B6F4A9800412FEA /* ContentView.swift in Sources */,
 				A34F02D02B77082A006A58FA /* WKWebViewControlsVM.swift in Sources */,
 				A3D1143A2B6F4A9800412FEA /* SpectraApp.swift in Sources */,
+				A3F3C6CF2B7F0F6C00D7A8A4 /* episodesListStyle.js in Sources */,
 				A3B8DDDC2B7A988700A78F0E /* VideoPlayerView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -380,6 +407,10 @@
 		A3D114372B6F4A9800412FEA /* RealityKitContent */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = RealityKitContent;
+		};
+		A3DF9EDA2B7EA5C700E42AB3 /* JunoSlider */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = JunoSlider;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

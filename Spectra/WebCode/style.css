@@ -84,10 +84,10 @@ button.ofo4B0 {
 
 
 /* MARK: - Adjust episode row bg and padding*/
-._2MB5uV._2MB5uV {
-    background-color: rgba(0,0,0, 0.5);
-    padding: 24px;
-}
+/*._2MB5uV._2MB5uV {*/
+/*    background-color: rgba(0,0,0, 0.5);*/
+/*    padding: 24px;*/
+/*}*/
 
 /* MARK: - Adjust login page*/
 div.a-row.a-expander-container.a-expander-inline-container {
@@ -102,9 +102,9 @@ div.a-section.a-spacing-micro {
     display: none;
 }
 
-div a span {
-    display: none;
-}
+/*div a span {*/
+/*    display: none;*/
+/*}*/
 
 div.a-divider.a-divider-break {
     display: none;
@@ -127,29 +127,3 @@ a-section a-spacing-none a-text-center {
 a.a-link-normal {
     display: none;
 }
-
-/* MARK: - Remove gradient on login under legal buttons*/
-
-/*div.a-row.a-expander-container.a-expander-inline-container {*/
-/*    display: none;*/
-/*}*/
-/**/
-/*hr.a-divider-normal {*/
-/*    display: none;*/
-/*}*/
-/**/
-/*div.a-section.a-spacing-micro {*/
-/*    display: none;*/
-/*}*/
-/**/
-/*div a span {*/
-/*    display: none;*/
-/*}*/
-/**/
-/*div.a-divider.a-divider-break {*/
-/*    display: none;*/
-/*}*/
-/**/
-/*div.a-divider-inner {*/
-/*    background: none;*/
-/*}*/
