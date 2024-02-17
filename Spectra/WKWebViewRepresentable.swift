@@ -85,17 +85,31 @@ struct WKWebViewRepresentable: UIViewRepresentable {
     }
     
     func episodesElementStyling() -> WKUserScript {
-        #warning("Works great until you click on the episode row. The styling is also overwriting the expanded view which does not look right. Perhaps remove expanded view? And remove some other buttons.")
+        #warning("find the mouseOver event and ovveride it - chatgpt")
+        //"Works great until you click on the episode row. The styling is also overwriting the expanded view which does not look right. Perhaps remove expanded view? And remove some other buttons. UPDATE: Removed style below for now.
+        //divElement.style['background-color'] = 'rgba(0,0,0, 0.5)';
         let source = """
         var targetElement = document.getElementById('tab-content-episodes');
         if (targetElement) {
         var liElements = targetElement.getElementsByTagName('li');
+        
             for (var i = 0; i < liElements.length; i++) {
                 var divElement = liElements[i].querySelector('div');
-                    if (divElement) {
-                        divElement.style['background-color'] = 'rgba(0,0,0, 0.5)';
-                        divElement.style.padding = '24px';
+        
+                if (divElement) {
+                    divElement.style['background-color'] = 'rgba(0,0,0, 0.5)';
+                    divElement.style.padding = '24px';
+        
+                    var downloadDiv = divElement.querySelector('div:nth-child(3)');
+                    if (downloadDiv) {
+                        downloadDiv.style.display = 'none';
                     }
+        
+                    var offersDiv = divElement.querySelector('div:nth-child(8)');
+                    if (offersDiv) {
+                        offersDiv.style.display = 'none';
+                    }
+                }
             }
         } else {
         console.log("Target element not found.");
