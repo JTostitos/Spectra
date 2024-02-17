@@ -84,6 +84,41 @@ struct WKWebViewRepresentable: UIViewRepresentable {
         return userScript
     }
     
+    func primeHeadersStyling() -> WKUserScript {
+        let source = """
+        var targetElement = document.getElementById('navbar-main');
+        if (targetElement) {
+        targetElement.style.display = 'none';
+        } else {
+        console.log("Target element not found.");
+        };
+        
+        var targetElement = document.getElementById('pv-navigation-bar');
+        if (targetElement) {
+        targetElement.style.display = 'none';
+        } else {
+        console.log("Target element not found.");
+        };
+        
+        var targetElement = document.getElementsByClassName('dynamic-type-ramp');
+        if (targetElement) {
+        for (var i = 0; i < targetElement.length; i++) {
+        var carosel = targetElement[i].querySelector('div:nth-child(2)');
+        
+        if (carosel) {
+                   carosel.style['padding-top'] = '5%';
+        }
+        }
+        } else {
+        console.log("Target element not found.");
+        };
+        """
+        
+        let userScript = WKUserScript(source: source, injectionTime: .atDocumentEnd, forMainFrameOnly: false)
+        
+        return userScript
+    }
+    
     func episodesElementStyling() -> WKUserScript {
         #warning("find the mouseOver event and ovveride it - chatgpt")
         //"Works great until you click on the episode row. The styling is also overwriting the expanded view which does not look right. Perhaps remove expanded view? And remove some other buttons. UPDATE: Removed style below for now.
@@ -94,11 +129,14 @@ struct WKWebViewRepresentable: UIViewRepresentable {
         var liElements = targetElement.getElementsByTagName('li');
         
             for (var i = 0; i < liElements.length; i++) {
+        
+                //liElements[i].style.padding = '48px';
                 var divElement = liElements[i].querySelector('div');
         
                 if (divElement) {
-                    divElement.style['background-color'] = 'rgba(0,0,0, 0.5)';
                     divElement.style.padding = '24px';
+                    //divElement.style['background-color'] = 'rgba(0,0,0, 0.5)';
+                    //divElement.style['box-shadow'] = '0 0px 0px 0px rgba(0,0,0,0)';
         
                     var downloadDiv = divElement.querySelector('div:nth-child(3)');
                     if (downloadDiv) {
@@ -127,6 +165,7 @@ struct WKWebViewRepresentable: UIViewRepresentable {
         userContentController.addUserScript(wkUserScript())
         userContentController.addUserScript(fixVideoPlayer())
         userContentController.addUserScript(episodesElementStyling())
+        userContentController.addUserScript(primeHeadersStyling())
         
         let configuration = WKWebViewConfiguration()
         configuration.userContentController = userContentController
