@@ -119,6 +119,21 @@ struct WKWebViewRepresentable: UIViewRepresentable {
         return userScript
     }
     
+    func primeFootersStyling() -> WKUserScript {
+        let source = """
+        var targetElement = document.getElementById('navFooter');
+        if (targetElement) {
+        targetElement.style.display = 'none';
+        } else {
+        console.log("Target element not found.");
+        };
+        """
+        
+        let userScript = WKUserScript(source: source, injectionTime: .atDocumentEnd, forMainFrameOnly: false)
+        
+        return userScript
+    }
+    
     func episodesElementStyling() -> WKUserScript {
         #warning("find the mouseOver event and ovveride it - chatgpt")
         //"Works great until you click on the episode row. The styling is also overwriting the expanded view which does not look right. Perhaps remove expanded view? And remove some other buttons. UPDATE: Removed style below for now.
@@ -159,13 +174,29 @@ struct WKWebViewRepresentable: UIViewRepresentable {
         return userScript
     }
     
+    func removeWatchPartyButtonStyling() -> WKUserScript {
+        let source = """
+            var targetElement = document.getElementsByClassName("dv-dp-node-watchparty");
+        
+        if (targetElement) {
+        targetElement.style.display = 'none';
+        } else {
+        console.log('Target element not found.');
+        };
+        """
+        
+        return WKUserScript(source: source, injectionTime: .atDocumentEnd, forMainFrameOnly: false)
+    }
+    
     func wkWebViewConfiguration() -> WKWebViewConfiguration {
         let userContentController = WKUserContentController()
         
         userContentController.addUserScript(wkUserScript())
+        userContentController.addUserScript(primeHeadersStyling())
         userContentController.addUserScript(fixVideoPlayer())
         userContentController.addUserScript(episodesElementStyling())
-        userContentController.addUserScript(primeHeadersStyling())
+        userContentController.addUserScript(primeFootersStyling())
+        userContentController.addUserScript(removeWatchPartyButtonStyling())
         
         let configuration = WKWebViewConfiguration()
         configuration.userContentController = userContentController
