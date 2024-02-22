@@ -32,8 +32,10 @@ struct VideoPlayerView: View {
                         .opacity(isLoading ? 0 : 1)
                         .onAppear {
                             dismissWindow(id: "contentView")
-                            let pathOnly = url.absoluteString.replacingOccurrences(of: "https://www.amazon.com/gp/video/detail", with: "")
-                            openURL.callAsFunction(URL(string: pathOnly)!)
+// I don't remember why I wanted to do this. Doesn't affect anything in the app.
+//                            let pathOnly = url.absoluteString.replacingOccurrences(of: "https://www.amazon.com/gp/video/detail", with: "")
+//                            openURL.callAsFunction(URL(string: pathOnly)!)
+                            
                         }
                 }
             }
@@ -43,8 +45,16 @@ struct VideoPlayerView: View {
                         Button {
                             openWindow(id: "contentView")
                         } label: {
-                            Image(systemName: "chevron.left")
+                            Image(systemName: "house")
                         }
+                        
+                        Button {
+                            
+                        } label: {
+                            Image(systemName: "circle")
+                        }
+                        .disabled(true)
+                        .opacity(0)
                         
                         Spacer()
                         
@@ -52,6 +62,17 @@ struct VideoPlayerView: View {
                             .frame(minWidth: 300)
                         
                         Spacer()
+                        
+                        Button {
+                            wkWebViewControlsVM.loadWebView(url: url!)
+                        } label: {
+                            Image(systemName: "play.rectangle")
+                                .overlay {
+                                    Image(systemName: "arrowshape.turn.up.left.fill")
+                                        .imageScale(.small)
+                                        .offset(x: 5, y: -10)
+                                }
+                        }
                         
                         Button {
                             wkWebViewControlsVM.reload()

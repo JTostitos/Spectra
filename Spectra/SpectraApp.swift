@@ -14,14 +14,14 @@ struct SpectraApp: App {
     var body: some Scene {
         WindowGroup(id: "contentView") {
             ContentView()
-                .frame(width: 1400, height: 1000)
+                .frame(width: 1600, height: 1000)
                 .environment(wkWebViewControlsVM)
         }
         .windowResizability(.contentSize)
         
         WindowGroup(id: "videoPlayerView", for: String.self) { url in
             VideoPlayerView(url: url)
-                .frame(width: 1400, height: 1000)
+                .frame(width: 1600, height: 1000)
                 .environment(wkWebViewControlsVM)
         }
         .windowResizability(.contentSize)

@@ -135,33 +135,73 @@ struct WKWebViewRepresentable: UIViewRepresentable {
     }
     
     func episodesElementStyling() -> WKUserScript {
-        #warning("find the mouseOver event and ovveride it - chatgpt")
-        //"Works great until you click on the episode row. The styling is also overwriting the expanded view which does not look right. Perhaps remove expanded view? And remove some other buttons. UPDATE: Removed style below for now.
-        //divElement.style['background-color'] = 'rgba(0,0,0, 0.5)';
         let source = """
+        /* This runs after a web page loads */
         var targetElement = document.getElementById('tab-content-episodes');
         if (targetElement) {
+        
+            // targetElement.style['background-color'] = 'rgba(205,25,105, 0.8)';
+            targetElement.style.margin = '0';
+        
+        // Get the checkbox element by its ID
+        var checkbox = document.getElementById('av-droplist-sorting-droplist');
+        
+        // Check if the checkbox element exists
+        if (checkbox) {
+            // Get the parent element of the checkbox
+            var parentElement = checkbox.parentNode;
+        
+            // Check if the parent element exists
+            if (parentElement) {
+                // Set the display property of the parent element to 'none'
+                parentElement.style.display = 'none';
+            } else {
+                console.error("Parent element not found.");
+            }
+        } else {
+            console.error("Checkbox element not found.");
+        }
+        
         var liElements = targetElement.getElementsByTagName('li');
         
             for (var i = 0; i < liElements.length; i++) {
         
-                //liElements[i].style.padding = '48px';
+                liElements[i].style['max-width'] = '1200px';
                 var divElement = liElements[i].querySelector('div');
         
                 if (divElement) {
-                    divElement.style.padding = '24px';
-                    //divElement.style['background-color'] = 'rgba(0,0,0, 0.5)';
-                    //divElement.style['box-shadow'] = '0 0px 0px 0px rgba(0,0,0,0)';
+                    // divElement.style.padding = '24px';
+                    //Set the box shadow and background to clear to remove the expanding view (kinda).
+                    divElement.style['background-color'] = 'rgba(0,0,0, 0.0)';
+                    divElement.style['box-shadow'] = '0 0px 0px 0px rgba(0,0,0,0)';
+                    
+                    // divElement.style.height = '300px';
         
                     var downloadDiv = divElement.querySelector('div:nth-child(3)');
                     if (downloadDiv) {
                         downloadDiv.style.display = 'none';
                     }
         
+                    var episodeTitle = divElement.querySelector('div:nth-child(5)');
+                    if (episodeTitle) {
+                        episodeTitle.style.color = 'white';
+                    }
+        
+                    var episodeDescription = divElement.querySelector('div:nth-child(6)');
+                    if (episodeDescription) {
+                        episodeDescription.style.color = 'white';
+                    }
+        
+                    var episodePrimeButton = divElement.querySelector('div:nth-child(7)');
+                    if (episodePrimeButton) {
+                        episodePrimeButton.style.color = 'white';
+                    }
+        
                     var offersDiv = divElement.querySelector('div:nth-child(8)');
                     if (offersDiv) {
                         offersDiv.style.display = 'none';
                     }
+        
                 }
             }
         } else {
@@ -174,15 +214,53 @@ struct WKWebViewRepresentable: UIViewRepresentable {
         return userScript
     }
     
+    func episodeActionBoxStyling() -> WKUserScript {
+        let source = """
+        var targetElement = document.querySelector('.dv-dp-node-playback');
+        
+        if (targetElement) {
+        var parent = targetElement.parentNode;
+        if (parent) {
+        var purchaseOptions = parent.querySelector('div:nth-child(2)');
+        if (purchaseOptions) {
+            purchaseOptions.style.display = 'none';
+        }
+        
+        }
+        } else {
+        console.log("Target element not found.");
+        }
+        """
+        
+        return WKUserScript(source: source, injectionTime: .atDocumentEnd, forMainFrameOnly: false)
+    }
+    
+    func downloadEpisodeUnavailableActionBoxStyling() -> WKUserScript {
+        let source = """
+        var targetElement = document.querySelector('.dv-node-dp-action-box');
+        
+        if (targetElement) {
+        var divElement = targetElement.getElementsByTagName('div');
+        if (divElement) {
+        divElement[4].style.display = 'none';
+        }
+        } else {
+        console.log("Target element not found.");
+        }
+        """
+        
+        return WKUserScript(source: source, injectionTime: .atDocumentEnd, forMainFrameOnly: false)
+    }
+    
     func removeWatchPartyButtonStyling() -> WKUserScript {
         let source = """
-            var targetElement = document.getElementsByClassName("dv-dp-node-watchparty");
+        var targetElement = document.querySelector('.dv-dp-node-watchparty');
         
         if (targetElement) {
         targetElement.style.display = 'none';
         } else {
-        console.log('Target element not found.');
-        };
+        console.log("Target element not found.");
+        }
         """
         
         return WKUserScript(source: source, injectionTime: .atDocumentEnd, forMainFrameOnly: false)
@@ -196,6 +274,8 @@ struct WKWebViewRepresentable: UIViewRepresentable {
         userContentController.addUserScript(fixVideoPlayer())
         userContentController.addUserScript(episodesElementStyling())
         userContentController.addUserScript(primeFootersStyling())
+        userContentController.addUserScript(downloadEpisodeUnavailableActionBoxStyling())
+        userContentController.addUserScript(episodeActionBoxStyling())
         userContentController.addUserScript(removeWatchPartyButtonStyling())
         
         let configuration = WKWebViewConfiguration()
