@@ -4,6 +4,10 @@
 
 ## Spectra Repository
 
+![](https://img.shields.io/badge/Swift-SwiftUI-%23f6582b?style=flat)
+![](https://img.shields.io/badge/Platforms-visionOS-%23f6582b?style=flat)
+[![Mastodon](https://img.shields.io/badge/Mastodon-%40JTostitos-%23563ACC?style=flat)](https://techhub.social/@JTostitos)
+
 You can be a part of making Spectra a great Amazon Prime Video client for Apple Vision Pro. To help contribute new features, bug fixes, or enhancements, fork this repository and make a pull request with your changes. I'm the only person monitorting the Spectra repository; So pull requests, enhancements and bugs will not be made, fixed, or released instantly. 
 
 Even if you are not a developer but still want to contribute, please report ideas for new features, bugs, or enahncements.
