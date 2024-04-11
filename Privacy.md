@@ -1,4 +1,4 @@
-# spectra-app
+# Spectra
 
 <p align="center">
 <img src="https://user-images.githubusercontent.com/17661536/181826164-d26ca67c-4883-40b9-923e-b7f1f7d5ab92.svg" width=200 />
