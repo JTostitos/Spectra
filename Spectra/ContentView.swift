@@ -67,11 +67,6 @@ enum PrimeVideoPlaces: CaseIterable {
     }
 }
 
-struct DetailURL: Identifiable {
-    var id = UUID()
-    var url: String
-}
-
 struct ContentView: View {
     @Environment(\.dismissWindow) private var dismissWindow
     @Environment(\.openWindow) var openWindow
@@ -79,7 +74,6 @@ struct ContentView: View {
     @AppStorage("requiresLogin") private var requiresLogin: Bool = true
     @State private var primeVideoPlaces: PrimeVideoPlaces = .home
     @State private var isLoading = false
-    @State private var videoPlayerDetailURL: DetailURL?
     
     var body: some View {
         ZStack {
@@ -140,8 +134,7 @@ struct ContentView: View {
                         .onChange(of: wkWebViewControlsVM.wkWebView?.url) { _, newValue in
                             if let url = newValue {
                                 if url.absoluteString.contains("https://www.amazon.com/gp/video/detail") {
-//                                    openWindow(id: "videoPlayerView", value: url.absoluteString)
-                                    videoPlayerDetailURL = DetailURL(url: url.absoluteString)
+                                    openWindow(id: "videoPlayerView", value: url.absoluteString)
                                     wkWebViewControlsVM.goBack()
                                 }
                             }
@@ -157,12 +150,6 @@ struct ContentView: View {
             LoginView(isLoading: $isLoading, primeVideoPlaces: $primeVideoPlaces)
                 .environment(wkWebViewControlsVM)
                 .frame(width: 575, height: 575)
-        }
-        .fullScreenCover(item: $videoPlayerDetailURL) { detailURL in
-//            @Bindable var detailURL = detailURL
-            
-            VideoPlayerView(url: Binding(projectedValue: .constant(detailURL.url)))
-                .environment(wkWebViewControlsVM)
         }
     }
 }

@@ -55,8 +55,7 @@ struct VideoPlayerView: View {
                 VStack(spacing: 5) {
                     HStack {
                         Button {
-                            url = nil
-//                            openWindow(id: "contentView")
+                            openWindow(id: "contentView")
                         } label: {
                             Image(systemName: "house")
                         }
