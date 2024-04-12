@@ -1,13 +1,25 @@
+// MARK: - FILE INFORMATION
 //
 //  VideoPlayerView.swift
 //  Spectra
 //
-//  Created by Jonathan Tsistinas on 2/12/24.
+//  Created by @JTostitos on 2/12/24.
 //
+// MARK: - LICENSE
+/*
+ Copyright (c) 2024 Jonathan Tsistinas
+ 
+ Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to use, copy, modify, merge, and publish the Software solely for non-commercial purposes. Distribution of the Software for profit, whether on Github or outside of Github, is expressly prohibited. Sub-licensing or selling copies of the Software is not allowed. Anyone who receives the software from the original source is allowed to do the aforementioned activities, subject to the following conditions:
+ 
+ The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+ 
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON INFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ */
 
+// MARK: - CODE
 import SwiftUI
 import AVKit
-import JunoSlider
+import JunoUI
 
 struct VideoPlayerView: View {
     @Environment(\.dismissWindow) var dismissWindow
@@ -43,7 +55,8 @@ struct VideoPlayerView: View {
                 VStack(spacing: 5) {
                     HStack {
                         Button {
-                            openWindow(id: "contentView")
+                            url = nil
+//                            openWindow(id: "contentView")
                         } label: {
                             Image(systemName: "house")
                         }
@@ -66,12 +79,7 @@ struct VideoPlayerView: View {
                         Button {
                             wkWebViewControlsVM.loadWebView(url: url!)
                         } label: {
-                            Image(systemName: "play.rectangle")
-                                .overlay {
-                                    Image(systemName: "arrowshape.turn.up.left.fill")
-                                        .imageScale(.small)
-                                        .offset(x: 5, y: -10)
-                                }
+                            Image(.backToVideo)
                         }
                         
                         Button {
@@ -84,7 +92,7 @@ struct VideoPlayerView: View {
                     .padding(.horizontal, 35)
                     
                     HStack {
-                        //capture post request and simulate that here? or simulate key presses
+                        // Capture post request and simulate that here? or simulate key presses
                         Button {
                             
                         } label: {
@@ -102,8 +110,6 @@ struct VideoPlayerView: View {
                         } label: {
                             Image(systemName: "goforward.15")
                         }
-                        
-                        Spacer()
                         
                         JunoSlider(sliderValue: $sliderValue, maxSliderValue: 1.0, baseHeight: 10.0, expandedHeight: 22.0, label: "Video Progress") { editingChanged in
                             isSliderActive = editingChanged

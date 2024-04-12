@@ -1,10 +1,22 @@
+// MARK: - FILE INFORMATION
 //
 //  ContentView.swift
 //  Spectra
 //
-//  Created by Jonathan Tsistinas on 2/3/24.
+//  Created by @JTostitos on 2/3/24.
 //
+// MARK: - LICENSE
+/*
+ Copyright (c) 2024 Jonathan Tsistinas
+ 
+ Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to use, copy, modify, merge, and publish the Software solely for non-commercial purposes. Distribution of the Software for profit, whether on Github or outside of Github, is expressly prohibited. Sub-licensing or selling copies of the Software is not allowed. Anyone who receives the software from the original source is allowed to do the aforementioned activities, subject to the following conditions:
+ 
+ The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+ 
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON INFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ */
 
+// MARK: - CODE
 import SwiftUI
 import WebKit
 
@@ -55,6 +67,11 @@ enum PrimeVideoPlaces: CaseIterable {
     }
 }
 
+struct DetailURL: Identifiable {
+    var id = UUID()
+    var url: String
+}
+
 struct ContentView: View {
     @Environment(\.dismissWindow) private var dismissWindow
     @Environment(\.openWindow) var openWindow
@@ -62,6 +79,7 @@ struct ContentView: View {
     @AppStorage("requiresLogin") private var requiresLogin: Bool = true
     @State private var primeVideoPlaces: PrimeVideoPlaces = .home
     @State private var isLoading = false
+    @State private var videoPlayerDetailURL: DetailURL?
     
     var body: some View {
         ZStack {
@@ -119,14 +137,16 @@ struct ContentView: View {
                                 .buttonStyle(.bordered)
                             }
                         }
-                        .onChange(of: wkWebViewControlsVM.wkWebView?.url) { oldValue, newValue in
+                        .onChange(of: wkWebViewControlsVM.wkWebView?.url) { _, newValue in
                             if let url = newValue {
                                 if url.absoluteString.contains("https://www.amazon.com/gp/video/detail") {
-                                    openWindow(id: "videoPlayerView", value: url.absoluteString)
+//                                    openWindow(id: "videoPlayerView", value: url.absoluteString)
+                                    videoPlayerDetailURL = DetailURL(url: url.absoluteString)
                                     wkWebViewControlsVM.goBack()
                                 }
                             }
                         }
+                        
                 }
             }
         }
@@ -137,6 +157,12 @@ struct ContentView: View {
             LoginView(isLoading: $isLoading, primeVideoPlaces: $primeVideoPlaces)
                 .environment(wkWebViewControlsVM)
                 .frame(width: 575, height: 575)
+        }
+        .fullScreenCover(item: $videoPlayerDetailURL) { detailURL in
+//            @Bindable var detailURL = detailURL
+            
+            VideoPlayerView(url: Binding(projectedValue: .constant(detailURL.url)))
+                .environment(wkWebViewControlsVM)
         }
     }
 }

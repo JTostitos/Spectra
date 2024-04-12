@@ -1,0 +1,14 @@
+# By default, SwiftLint uses a set of sensible default rules you can adjust:
+disabled_rules: # rule identifiers turned on by default to exclude from running
+  - line_length
+  - trailing_whitespace
+  - switch_case_alignment
+
+# Some rules are turned off by default, so you need to opt-in. Find all the available rules by running: `swiftlint rules`
+#opt_in_rules:
+#  - empty_count
+
+# Alternatively, specify all rules explicitly by uncommenting this option:
+# only_rules: # delete `disabled_rules` & `opt_in_rules` if using this
+#   - empty_parameters
+#   - vertical_whitespace

@@ -37,41 +37,41 @@
 
 
 /* MARK: - Make background clear */
-div._2RwnU5, dynamic-type-ramp dv-fable-breakpoints VYbJYb yL46mS kK-hEr {
-    background-color: transparent;
-}
-
-.DWvyeE, html body {
-    background-color: transparent;
-}
-
-.lGJghq, .lGJghq {
-    background: none;
-    background-size: 0px 0px;
-}
-
-.tixsA- {
-    background-color: transparent;
-}
+/*div._2RwnU5, dynamic-type-ramp dv-fable-breakpoints VYbJYb yL46mS kK-hEr {*/
+/*    background-color: transparent;*/
+/*}*/
+/**/
+/*/*.DWvyeE, html body {*/
+/*    background-color: transparent;*/
+/*}*/*/
+/**/
+/*.lGJghq, .lGJghq {*/
+/*    background: none;*/
+/*    background-size: 0px 0px;*/
+/*}*/
+/**/
+/*.tixsA- {*/
+/*    background-color: transparent;*/
+/*}*/
 
 /* MARK: - Remove hidden skip link */
 
-a.skip-link {
-    display: none;
-}
+/*a.skip-link {*/
+/*    display: none;*/
+/*}*/
 
 /* MARK: - Adjust episode, related, details button*/
-div._3KHiTg.+cUdBP {
-    display: none;
-}
-
-button.ofo4B0.MH6gd4 {
-    display: none;
-}
-
-button.ofo4B0 {
-    display: none;
-}
+/*div._3KHiTg.+cUdBP {*/
+/*    display: none;*/
+/*}*/
+/**/
+/*button.ofo4B0.MH6gd4 {*/
+/*    display: none;*/
+/*}*/
+/**/
+/*button.ofo4B0 {*/
+/*    display: none;*/
+/*}*/
 
 /* MARK: - Adjust Live TV bubbles */
 .k0uWjy button.BCOvN9 {
