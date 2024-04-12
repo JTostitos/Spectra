@@ -9,7 +9,7 @@
 [![Mastodon](https://img.shields.io/badge/Mastodon-%40JTostitos-%23563ACC?style=flat&logo=mastodon)
 ](https://techhub.social/@JTostitos)
 
-You can be a part of making Spectra a great Amazon Prime Video client for Apple Vision Pro. To help contribute new features, bug fixes, or enhancements, fork this repository and make a pull request with your changes. I'm the only person monitorting the Spectra repository; So pull requests, enhancements and bugs will not be made, fixed, or released instantly. 
+You can be a part of making Spectra a great Amazon Prime Video client for Apple Vision Pro. To help contribute new features, bug fixes, or enhancements, fork this repository and make a pull request with your changes. I'm the only person monitorting the Spectra repository; So pull requests, enhancements and bugs may not be made, fixed, or released as soon as you might like. 
 
 Even if you are not a developer but still want to contribute, please report ideas for new features, bugs, or enahncements.
 
