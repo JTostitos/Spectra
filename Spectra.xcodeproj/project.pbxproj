@@ -89,7 +89,6 @@
 			isa = PBXGroup;
 			children = (
 				A3D114342B6F4A9800412FEA /* Spectra */,
-				A3D114352B6F4A9800412FEA /* Packages */,
 				A3D114332B6F4A9800412FEA /* Products */,
 				A3DF9ED92B7EA5C700E42AB3 /* Frameworks */,
 			);
@@ -119,13 +118,6 @@
 				A3D1143F2B6F4A9A00412FEA /* Preview Content */,
 			);
 			path = Spectra;
-			sourceTree = "<group>";
-		};
-		A3D114352B6F4A9800412FEA /* Packages */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Packages;
 			sourceTree = "<group>";
 		};
 		A3D1143F2B6F4A9A00412FEA /* Preview Content */ = {
