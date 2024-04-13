@@ -21,6 +21,6 @@ To contribute to the issues page, GitHub requires you to create a free account. 
 
 **Please** stay *on-topic* to the issue report that you are participating in. Please do not post memes. If you have the same issue or want the same enhancement but have no further information to add, please use the reactions button to do so instead of creating a new comment.
 
-Please read the LICENSE.
+Please read the [LICENSE](https://github.com/JTostitos/Spectra/blob/main/LICENSE).
 
 ###### Thanks for helping make Spectra a great app! - Jonathan T.
